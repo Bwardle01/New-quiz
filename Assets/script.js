@@ -55,7 +55,7 @@ const deselectAnswers = () => {
 
   const getSelected = () => {
     let answer;
-    answerElements.forEach((answerElement)= => {
+    answerElements.forEach((answerElement) => {
       if (answerElement.checked) answer = answerElement.id;});
     
     return answer;
