@@ -23,6 +23,12 @@ body {
     overflow: hidden;
 }
 
+#time {
+    font-size: 30px;
+    color: red;
+    text-align: center;
+  }
+  
 .quiz-header {
     padding: 5rem;
 }
