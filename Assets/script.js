@@ -1,7 +1,7 @@
 const quizData = [
   {
     question:"Which of these data types dont belong?",
-    a:"Nll",
+    a:"Null",
     b:"Boolean",
     c:"Number",
     d:"Letter",
@@ -137,11 +137,15 @@ quiz.innerHTML = `
 <ul id="scoes"></ul
 <br>
   Enter your initials: <input type="text" id="initials"></input>
+  <button id="clear">Clear Local Storage</button>
 <button id="submitInitials">Submit</button>
 ` // location.reload() won't work in CodePen for security reasons;
 
 const submitInitialsButton = document.getElementById("submitInitials");
 submitInitialsButton.addEventListener("click", submitI);
+
+const clearButton = document.getElementById("clear");
+  clearButton.addEventListener("click", clearLocalStorage);
 
 LeaderB();
 
@@ -151,7 +155,8 @@ LeaderB();
 
 submitI();
 
-
+const clearButton = document.getElementById("clear");
+  clearButton.addEventListener("click", clearLocalStorage);
 // need to pull data from local storage and dislay it on the screen.
 
 
@@ -173,6 +178,10 @@ function LeaderB() {
 
 
 
+  function clearLocalStorage() {
+    localStorage.clear();
+  }
 
 
 
+  
