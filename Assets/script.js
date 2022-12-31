@@ -36,6 +36,7 @@ const quizData = [
     
 // Creating a var for each part of the quiz.
 
+
 const quiz = document.getElementById("quiz");
 const answerElements = document.querySelectorAll(".answer");
 const questionElement = document.getElementById("question");
@@ -60,8 +61,10 @@ const deselectAnswers = () => {
   const getSelected = () => {
     let answer;
     answerElements.forEach((answerElement) => {
-      if (answerElement.checked) answer = answerElement.id;});
-    
+      if (answerElement.checked) {
+        answer = answerElement.id;
+      }
+      });
     return answer;
   };
 
@@ -74,12 +77,15 @@ const deselectAnswers = () => {
     c_text.innerText = currentQuizData.c;
     d_text.innerText = currentQuizData.d;
   };
+
+  
   loadQuiz();
 
 const startTimer = () => {
   interval = setInterval(() => {
     timer--;
-    document.getElementById("time").innerText = timer;
+    ;
+    document.getElementById("time").textContent = timer;
     if (timer <= 0) {
       clearInterval(interval);
       quiz.innerHTML = `
@@ -90,6 +96,16 @@ const startTimer = () => {
   }, 1000);
 };
 
+function stop() {
+  clearInterval(check);
+  check = null;
+  document.getElementById("time").innerHTML = '0';
+}
+
+startTimer();
+
+
+
 const submitI = () => {
   // Retrieve the value of the initials input field
   const initials = document.getElementById("initials").value;
@@ -97,6 +113,7 @@ const submitI = () => {
   // Save the score and initials to local storage
   localStorage.setItem("score", score);
   localStorage.setItem("initials", initials);
+
 
   // Display a message to confirm that the score and initials have been saved
   alert(`Your score of ${score} and initials "${initials}" have been saved!`);
@@ -112,10 +129,12 @@ if (answer === quizData[currentQuiz].correct)
 
 currentQuiz++;
 if (currentQuiz < quizData.length) loadQuiz();
+
 else {
 quiz.innerHTML = `
 <h2>You answered ${score}/${quizData.length} questions correctly</h2>
 <button onclick="history.go(0)">Play Again</button> 
+<ul id="scoes"></ul
 <br>
   Enter your initials: <input type="text" id="initials"></input>
 <button id="submitInitials">Submit</button>
@@ -123,12 +142,37 @@ quiz.innerHTML = `
 
 const submitInitialsButton = document.getElementById("submitInitials");
 submitInitialsButton.addEventListener("click", submitI);
+
+LeaderB();
+
 }
 }
 );
 
+submitI();
 
 
-startTimer();
+// need to pull data from local storage and dislay it on the screen.
+
+
+function LeaderB() {
+
+  const item1 = localStorage.getItem("initials");
+  const item2 = localStorage.getItem("score");
+  // Check if data is returned, if not exit out of the function
+  if (item1 && item2) {
+    // Create a new list item element with the initials and score as text
+    const listItem = document.createElement("li");
+    listItem.textContent = `${item1}: ${item2}`;
+    // Append the new list item to the ul element
+    const scoresList = document.getElementById("scoes");
+    scoresList.appendChild(listItem);
+  } 
+}
+
+
+
+
+
 
 
